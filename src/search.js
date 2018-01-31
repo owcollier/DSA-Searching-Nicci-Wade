@@ -10,9 +10,24 @@ export default class Search extends React.Component {
     this.onLinearClick = this.onLinearClick.bind(this);
   }
 
+  linearSearch(input) {
+    let searchCount = 0;
+   for(let i = 0; i < this.state.data.length; i++) {
+     if (this.state.data[i] === input) {
+      searchCount++;
+      return `${this.state.data[i]} successfully found. Search took ${searchCount} steps.`;
+     }
+     searchCount++;
+   }
+   return `${input} not found. Search took ${searchCount} steps.`
+  }
+
   onLinearClick() {
-    console.log(`clicked linear with input`)
-    console.log(this.input.value)
+    // console.log(`clicked linear with input`)
+    // console.log(this.input.value)
+    const input = parseInt(this.input.value);
+    console.log(this.linearSearch(input));
+    this.input.value = '';
   }
 
   onBinaryClick() {
